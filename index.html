@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!-- Dichiara il documento come HTML5: aiuta il browser ad attivare la "standards mode" -->
+<html lang="it" class="no-js">
+  <!-- Imposta la lingua del documento: fondamentale per screen reader e SEO -->
+  <head>
+    <meta charset="utf-8" />
+    <!-- Codifica dei caratteri in UTF-8: supporta lettere accentate, simboli, ecc. -->
+
+    <!-- Viewport responsivo: dice al browser mobile di adattare zoom e larghezza alla finestra -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Basilica Platform</title>
+    <!-- Titolo della pagina: appare nella scheda del browser e contribuisce alla SEO.
+         In un progetto reale, ogni pagina avrebbe un titolo specifico. -->
+
+    <!-- Collegamento al foglio di stile globale: separiamo presentazione (CSS) da struttura (HTML) -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Rimuove la classe no-js se JavaScript è attivo (per fallback menu) -->
+    <script>
+      document.documentElement.classList.remove('no-js');
+    </script>
+  </head>
+
+  <body>
+    <!-- Skip-link (visibile al focus con TAB): permette a chi usa la tastiera
+         o screen reader di saltare direttamente al contenuto principale -->
+    <a class="skip-link" href="#main-content">Salta al contenuto</a>
+
+    <!-- HEADER: area di testata persistente (sticky), contiene logo e navigazione -->
+    <header class="header">
+      <div class="container header__inner">
+        <!-- "container" centra e limita la larghezza; "header__inner" (BEM) gestisce il layout interno -->
+
+        <!-- Logo: linka all’ancora #home (inizio pagina) per coerenza con il menu ad ancore. -->
+        <a class="logo" href="#home" aria-label="Vai alla sezione Home">
+          Basilica<span class="logo--accent">Platform</span>
+        </a>
+
+        <!-- Bottone hamburger per dispositivi mobili -->
+        <button
+          id="menu-button"
+          class="menu-button"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Apri/chiudi menu</span>
+          <span aria-hidden="true" class="menu-icon"></span>
+        </button>
+
+        <!-- NAV principale -->
+        <nav id="primary-nav" class="nav" aria-label="Navigazione principale">
+          <ul>
+            <li><a href="#basilica">Basilica</a></li>
+            <li><a href="#eventi">Eventi</a></li>
+            <li><a href="#donazioni">Donazioni</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+          </ul>
+        </nav>
+      </div>
+      <!-- /.container header__inner -->
+    </header>
+
+    <!-- MAIN -->
+    <main id="main-content">
+      <!-- HERO (Home) -->
+      <section id="home" class="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <h1 id="hero-title">
+            Benvenuti nella <span class="accent">Basilica Platform</span>
+          </h1>
+
+          <p class="muted">
+            Portale demo ispirato alla Basilica di San Francesco: informazioni,
+            eventi, donazioni e contatti.
+          </p>
+
+          <!-- CTA -->
+          <a class="btn btn--primary hero-cta" href="#eventi">Scopri gli eventi</a>
+        </div>
+        <!-- /.container -->
+      </section>
+
+      <!-- BASILICA -->
+      <section id="basilica" class="section" aria-labelledby="tit-basilica">
+        <div class="container">
+          <h2 id="tit-basilica">La Basilica</h2>
+
+          <div class="prose">
+            <p>
+              La Basilica di San Francesco è luogo di pellegrinaggio, arte e
+              spiritualità. In questa sezione troverai informazioni storiche,
+              percorsi di visita e curiosità.
+            </p>
+          </div>
+
+          <figure class="mt-4">
+            <img
+              src="images/basilica-esterno.jpg"
+              alt="Veduta esterna della Basilica di San Francesco"
+              loading="lazy"
+              width="1200"
+              height="675"
+            />
+            <figcaption class="text-muted">
+              Veduta della Basilica — immagine segnaposto.
+            </figcaption>
+          </figure>
+        </div>
+        <!-- /.container -->
+      </section>
+
+      <!-- EVENTI -->
+      <section id="eventi" class="section" aria-labelledby="tit-eventi">
+        <div class="container">
+          <h2 id="tit-eventi">Eventi</h2>
+
+          <article>
+            <h3>Concerto d'organo</h3>
+            <p class="text-muted">
+              <time datetime="2025-09-12">12 settembre 2025</time>
+            </p>
+            <p>Serata di musica sacra con repertorio francese.</p>
+            <a class="btn btn--ghost" href="#">Dettagli</a>
+          </article>
+
+          <article>
+            <h3>Visita guidata</h3>
+            <p class="text-muted">
+              <time datetime="2025-09-18">18 settembre 2025</time>
+            </p>
+            <p>Tour della chiesa superiore con guida storica.</p>
+            <a class="btn btn--ghost" href="#">Dettagli</a>
+          </article>
+
+          <details class="mt-4">
+            <summary class="text-muted">Mostra altri eventi</summary>
+            <article class="mt-4">
+              <h3>Veglia di preghiera</h3>
+              <p class="text-muted">
+                <time datetime="2025-09-20">20 settembre 2025</time>
+              </p>
+              <p>Momento di raccoglimento nella cripta.</p>
+              <a class="btn btn--ghost" href="#">Dettagli</a>
+            </article>
+          </details>
+        </div>
+        <!-- /.container -->
+      </section>
+
+      <!-- DONAZIONI -->
+      <section id="donazioni" class="section" aria-labelledby="tit-donazioni">
+        <div class="container" style="text-align: center">
+          <h2 id="tit-donazioni">Sostieni la Basilica</h2>
+
+          <p class="prose" style="margin-inline: auto">
+            Con la tua offerta contribuisci a preservare il patrimonio artistico e
+            a sostenere le attività pastorali.
+          </p>
+
+          <a class="btn btn--primary mt-4" href="#">Dona ora</a>
+
+          <div class="prose mt-4" style="margin-inline: auto">
+            <p class="text-muted">
+              Puoi donare online oppure tramite bonifico. Per dettagli consulta la
+              sezione <a href="#contatti">Contatti</a>.
+            </p>
+          </div>
+        </div>
+        <!-- /.container -->
+      </section>
+
+      <!-- CONTATTI -->
+      <section id="contatti" class="section" aria-labelledby="tit-contatti">
+        <div class="container">
+          <h2 id="tit-contatti">Contatti</h2>
+
+          <form class="form" aria-describedby="form-help">
+            <div class="form__row">
+              <label for="nome">Nome</label>
+              <input
+                id="nome"
+                name="nome"
+                type="text"
+                placeholder="Il tuo nome"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="form__row">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="nome@email.it"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="form__row">
+              <label for="msg">Messaggio</label>
+              <textarea
+                id="msg"
+                name="msg"
+                rows="4"
+                placeholder="Scrivi qui il tuo messaggio"
+                autocomplete="off"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary">Invia</button>
+
+            <p id="form-help" class="text-muted">
+              I campi Nome ed Email sono obbligatori.
+            </p>
+          </form>
+        </div>
+        <!-- /.container -->
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <p>© <span id="year"></span> Basilica Platform</p>
+      </div>
+    </footer>
+
+    <!-- Script in fondo al body -->
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+
+
+

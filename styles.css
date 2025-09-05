@@ -1,0 +1,277 @@
+/* ==========================================================================
+   Basilica Platform — styles.css
+   01) Reset & Tokens
+   02) Base & Typography
+   03) Accessibility helpers
+   04) Layout primitives (container, section, utilities)
+   05) Header & Navigation (mobile-first + sticky)
+   06) Home / Hero
+   07) Sezioni: Basilica / Eventi / Donazioni / Contatti
+   08) Components: Buttons / Form
+   09) Utilities, Responsive, Print
+   ========================================================================== */
+
+/* === 01) Reset & Tokens ================================================== */
+
+:root {
+  /* Palette principale */
+  --bg: #ffffff;
+  --fg: #1f2937;            /* Gray 800 */
+  --muted: #6b7280;         /* Gray 500 */
+  --brand: #7c3aed;         /* Violet 600 */
+  --brand-700: #5b21b6;     /* hover */
+  --accent: #0ea5e9;        /* Sky 500 */
+  --surface: #f9fafb;       /* Gray 50 */
+  --border: #e5e7eb;        /* Gray 200 */
+
+  /* Tipografia e ritmo verticale */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue";
+  --fs-sm: .875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.25rem;
+  --fs-2xl: 1.5rem;
+  --fs-3xl: 1.875rem;
+  --lh: 1.6;
+
+  /* Spaziature / Raggi / Ombre */
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+
+  --radius: 12px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.12);
+
+  /* Layout */
+  --container: 1100px;
+  --header-h: 64px;
+}
+
+/* Reset essenziale */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+/* === 02) Base & Typography ============================================== */
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh);
+  color: var(--fg);
+  background: var(--bg);
+}
+
+h1, h2, h3 { line-height: 1.25; margin: 0 0 var(--space-3); }
+h1 { font-size: clamp(var(--fs-2xl), 4vw, 2.25rem); }
+h2 { font-size: clamp(var(--fs-xl), 3vw, 1.75rem); }
+h3 { font-size: clamp(var(--fs-lg), 2.5vw, 1.25rem); }
+
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.muted      { color: var(--muted); }
+.text-muted { color: var(--muted); }
+.prose      { max-width: 70ch; }
+.prose a    { text-decoration: underline; } /* Link in corpo testo chiaramente distinguibili */
+.accent     { color: var(--accent); }       /* Accento riutilizzabile */
+
+/* === 03) Accessibility helpers ========================================== */
+
+/* Focus tastiera ben visibile */
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Elemento solo per screen reader (rimane nascosto anche al focus) */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* Skip-link accessibile: appare quando riceve focus */
+.skip-link {
+  position: absolute;
+  left: -9999px; top: 0;
+  background: var(--accent);
+  color: #fff;
+  padding: var(--space-2) var(--space-3);
+  border-radius: 8px;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: var(--space-4);
+  top: calc(var(--space-4) + 2px);
+}
+
+/* Evita che l’header sticky copra i titoli raggiunti da #ancore */
+:target { scroll-margin-top: calc(var(--header-h) + 8px); }
+
+/* === 04) Layout primitives ============================================== */
+
+.container { max-width: var(--container); margin-inline: auto; padding-inline: var(--space-4); }
+.section   { padding-block: var(--space-10); }
+
+.mt-4 { margin-top: var(--space-4); }
+
+/* === 05) Header & Navigation (mobile-first + sticky) ===================== */
+
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: #fff; box-shadow: var(--shadow-sm);
+  height: var(--header-h);
+  display: grid; align-items: center;
+}
+.header__inner { display: flex; align-items: center; justify-content: space-between; }
+
+.logo { font-weight: 800; font-size: var(--fs-xl); }
+.logo--accent { color: var(--brand); }
+
+.menu-button { background: transparent; border: 0; cursor: pointer; padding: var(--space-2); }
+.menu-icon {
+  width: 24px; height: 2px; background: var(--fg); display: inline-block; position: relative;
+}
+.menu-icon::before, .menu-icon::after {
+  content: ""; position: absolute; left: 0; width: 24px; height: 2px; background: var(--fg);
+}
+.menu-icon::before { top: -6px; }
+.menu-icon::after  { top:  6px; }
+
+/* Nav mobile: chiusa di default, aperta con [data-open="true"] */
+.nav { display: none; }
+.nav[data-open="true"] {
+  display: block;
+  position: absolute; top: calc(var(--header-h) + 6px); left: var(--space-4); right: var(--space-4);
+  background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-md);
+  padding: var(--space-4);
+}
+.nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.nav a { display: block; padding: .5rem .75rem; border-radius: 8px; }
+.nav a:hover { background: rgba(0,0,0,.04); }
+
+/* Link attivo (gestito via aria-current="page" da JS) */
+.nav a[aria-current="page"] {
+  background: rgba(124,58,237,.10);
+  color: var(--brand);
+  font-weight: 600;
+}
+
+/* Fallback: se JS è disabilitato, mostra la nav */
+.no-js .nav { display: block; position: static; box-shadow: none; padding: 0; }
+
+/* Desktop: nav inline sempre visibile */
+@media (min-width: 768px) {
+  .nav { display: block; position: static; box-shadow: none; padding: 0; }
+  .nav ul { grid-auto-flow: column; gap: var(--space-4); }
+}
+
+/* === 06) Home / Hero ===================================================== */
+
+.hero {
+  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  color: #fff;
+  text-align: center;
+  padding-block: clamp(3rem, 8vw, 6rem);
+  display: grid; place-items: center;
+}
+.hero-cta { margin-top: var(--space-4); }
+
+/* === 07) Sezioni: Basilica / Eventi / Donazioni / Contatti ============== */
+
+#basilica { background: var(--surface); }
+#basilica p { max-width: 70ch; }
+
+/* Eventi: elenco lineare */
+#eventi article {
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+#eventi article:last-child { border-bottom: 0; }
+#eventi h3 { margin-bottom: .25rem; }
+
+/* Donazioni: CTA centrale su lieve gradiente */
+#donazioni {
+  background: linear-gradient(135deg, rgba(124,58,237,.08), rgba(14,165,233,.08));
+  text-align: center;
+}
+#donazioni p { margin-bottom: var(--space-6); }
+
+/* Contatti */
+#contatti { background: var(--surface); }
+
+/* === 08) Components ====================================================== */
+
+/* Bottoni */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  border: 0; border-radius: var(--radius);
+  padding: .75rem 1rem;
+  cursor: pointer;
+  transition: filter .15s ease, transform .02s ease;
+  text-decoration: none;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn--primary { background: var(--brand); color: #fff; }
+.btn--primary:hover { filter: brightness(1.05); }
+.btn--primary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.btn--ghost {
+  background: transparent; color: var(--fg);
+  border: 1px solid #cbd5e1;
+}
+.btn--ghost:hover { background: #f3f4f6; }
+
+/* Form */
+.form { display: grid; gap: var(--space-4); max-width: 640px; }
+.form__row { display: grid; gap: .35rem; }
+.form label { font-weight: 600; }
+.form input, .form textarea, .form select {
+  padding: .75rem 1rem; font: inherit; color: var(--fg);
+  background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+}
+.form input::placeholder, .form textarea::placeholder { color: #94a3b8; }
+.form input:focus, .form textarea:focus, .form select:focus {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+
+/* Footer */
+.footer {
+  background: #0b1220; color: #e5e7eb;
+  margin-top: var(--space-10);
+  padding-block: var(--space-6);
+  text-align: center;
+  font-size: var(--fs-sm);
+}
+.footer a { color: #e5e7eb; }
+.footer a:hover { text-decoration: underline; }
+
+/* === 09) Utilities, Responsive, Print =================================== */
+
+/* Mobile: compatta le sezioni e rimuovi limiti form */
+@media (max-width: 767px) {
+  .section { padding-block: var(--space-8); }
+  .form { max-width: 100%; }
+}
+
+/* Stampa: nascondi UI non utile */
+@media print {
+  * { box-shadow: none !important; }
+  .header, .menu-button, .nav, .btn { display: none !important; }
+  body { color: #000; background: #fff; }
+  a { text-decoration: underline; }
+}
+
