@@ -53,6 +53,7 @@
           <ul>
             <li><a href="#basilica">Basilica</a></li>
             <li><a href="#eventi">Eventi</a></li>
+            <li><a href="#orari">Orari</a></li>
             <li><a href="#donazioni">Donazioni</a></li>
             <li><a href="#contatti">Contatti</a></li>
           </ul>
@@ -67,7 +68,7 @@
       <section id="home" class="hero" aria-labelledby="hero-title">
         <div class="container">
           <h1 id="hero-title">
-            Benvenuti nella <span class="accent">Basilica Platform</span> - DEMO
+            Benvenuti nella <span class="accent">Basilica Platform</span>
           </h1>
           <p class="muted">sottotitolo</p>
           <h3>Questa è la Basilica di San Francesco</h3>
@@ -112,12 +113,33 @@
         <!-- /.container -->
       </section>
 
-      <!-- EVENTI -->
+      <!-- EVENTI con uso di card-->
       <section id="eventi" class="section" aria-labelledby="tit-eventi">
         <div class="container">
           <h2 id="tit-eventi">Eventi</h2>
 
-          <article>
+          <div class="cards" role="list">
+            <!-- Card 1 -->
+
+            <article class="card" role="listitem">
+              <div class="card_media">
+                <img src="images/evento-organo.jpg" alt="Concerto d'organo" loading="lazy" width="640" height="360">
+              </div>
+               <div class="card_body">
+                <span class="badge">12 set 2025</span>
+                <h3>Concerto d'organo</h3>
+                <p>Serata di musica sacra con repertorio farncese.</p>
+               </div>
+               <div class="card__footer">
+                <a class="btn btn--primary" href="#">Prenota</a>
+                 <a class="btn btn--ghost" href="#">Dettagli</a>
+               </div>
+            </article>
+
+
+          </div>
+
+         <!--  <article>
             <h3>Concerto d'organo</h3>
             <p class="text-muted">
               <time datetime="2025-09-12">12 settembre 2025</time>
@@ -133,7 +155,7 @@
             </p>
             <p>Tour della chiesa superiore con guida storica.</p>
             <a class="btn btn--ghost" href="#">Dettagli</a>
-          </article>
+          </article>-->
 
           <details class="mt-4">
             <summary class="text-muted">Mostra altri eventi</summary>
@@ -150,6 +172,54 @@
         <!-- /.container -->
       </section>
 
+
+      <!-- ORARI -->
+
+      <section id="orari" class="section" aria-labelledby="tit-orari">
+        <div class="container">
+          <h2 id="tit-orari">Orari</h2>
+
+          <div class="table-responsive">
+            <table class="table">
+              <caption>Orari di apertura Basilica ( ultimo ingresso 30' prima della chiusura)</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Giorno</th>
+                  <th scope="col">Chiesa Superiore</th>
+                  <th scope="col">Chiesa inferiore &amp; Cripta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Lun-Ven</th>
+                  <td>08:30 - 18:30</td>
+                  <td>07:00 - 19:00</td>
+                </tr>
+                            <tr>
+                  <th scope="row">Sabato</th>
+                  <td>08:30 - 19:00</td>
+                  <td>07:00 - 19:30</td>
+                </tr>
+                            <tr>
+                  <th scope="row">Domenica e Festivi</th>
+                  <td>12:30 - 18:30</td>
+                  <td>07:00 - 19:30</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chiusura straordinaria</th>
+                  <td colspan="2">Eventuali variazioni saranno comunicate nella sezioen Eventi.</td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+          <p class="text-muted mt-4">La Sacrestia è aperta per informazioni e intenzioni di S. Messe dalle 9:00 alle 12:30 e dalle 15:00 alle 18:00.</p>
+
+        </div>
+      </section>
+
+      
       <!-- DONAZIONI -->
       <section id="donazioni" class="section" aria-labelledby="tit-donazioni">
         <div class="container" style="text-align: center">

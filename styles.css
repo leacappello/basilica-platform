@@ -275,3 +275,96 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
   a { text-decoration: underline; }
 }
 
+/* === 10) Tables (orari) =================================== */
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-base);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.table caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 700;
+  padding: var(--space-3) var(--space-4);
+  color: var(--fg);
+}
+
+.table th, .table td {
+  padding: .75rem 1rem;
+  text-align: left;
+  border-top: 1px solid var(--border);
+}
+
+.table thead th {
+  background: #f3f4f6;
+  border-top: 0;
+}
+
+.table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.table.th[scope="row"] {
+  white-space: nowrap;
+}
+
+
+/* === 11) Cards  =================================== */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+}
+
+.card__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card__body {
+  padding: var(--space-4);
+  display: grid;
+  gap: .5rem;
+}
+
+.card__footer {
+  padding: var(--space-4);
+  display: flex;
+  gap: .5rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  font-size: var(--fs-sm);
+  background: rgba(124,58,237,.12);
+  color:var(--brand-700);
+  border: 1px solid rgba(124,58,237,.25);
+  padding: .2rem .5rem;
+  border-radius: 999px;
+}
